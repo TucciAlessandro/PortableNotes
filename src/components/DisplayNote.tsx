@@ -1,5 +1,6 @@
 import React from "react";
 import styled from "styled-components";
+import Button from "./Button";
 
 interface NoteProps {
   title: string;
@@ -17,9 +18,17 @@ interface Note {
 
 const Separator = styled.h2`
   margin: 0 1rem;
+  display: flex;
+  justify-content: center;
+  align-items: center;
 `;
 const SeparatorText = styled.h4`
   margin: 0 1rem;
+`;
+
+const StyledHr = styled.hr`
+  width: 80%;
+  color: black;
 `;
 
 const Container = styled.div`
@@ -28,18 +37,29 @@ const Container = styled.div`
   margin: 0;
 `;
 
+const ButtonContainer = styled.div`
+  display: flex;
+  flex-direction: row;
+`;
+
 function DisplayNote({ title, id, text, deleteNote, handleClick }: NoteProps) {
   return (
-      <>
-    <Container onClick={handleClick}>
-      <Separator>{title}</Separator>
-      <hr />
-      <SeparatorText>{text}</SeparatorText>
-      {id}
-    </Container>
-      <button onClick={handleClick}>EDIT</button>
-      <button onClick={() => deleteNote(id)}>DELETE</button>
-      </>
+    <>
+      <Container onClick={handleClick}>
+        <Separator>{title.toUpperCase()}</Separator>
+        <StyledHr />
+        <SeparatorText>{text}</SeparatorText>
+        {id}
+      </Container>
+      <ButtonContainer>
+        <Button color="secondary" size="small" onClick={handleClick}>
+          EDIT
+        </Button>
+        <Button color="danger" size="small" onClick={() => deleteNote(id)}>
+          DELETE
+        </Button>
+      </ButtonContainer>
+    </>
   );
 }
 

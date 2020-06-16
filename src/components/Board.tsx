@@ -2,6 +2,7 @@ import React, { useState } from "react";
 import DisplayNote from "./DisplayNote";
 import styled from "styled-components";
 import CreateNote from "./CreateNote";
+import Button from "./Button";
 
 const NoteContainer = styled.div`
   display: flex;
@@ -13,7 +14,24 @@ const NoteContainer = styled.div`
   align-items: center;
   justify-content: center;
   border: solid 1px black;
+  border-radius: 19px;
+  -webkit-box-shadow: -2px 0px 23px 1px rgba(0, 0, 0, 0.53);
+  -moz-box-shadow: -2px 0px 23px 1px rgba(0, 0, 0, 0.53);
+  box-shadow: -2px 0px 23px 1px rgba(0, 0, 0, 0.53);
+  &:hover {
+    transition: 0.5s ease-in-out;
+    -webkit-box-shadow: -2px 0px 23px 23px rgba(0, 0, 0, 0.53);
+    -moz-box-shadow: -2px 0px 23px 23px rgba(0, 0, 0, 0.53);
+    box-shadow: -2px 0px 23px 23px rgba(0, 0, 0, 0.53);
+  }
 `;
+
+const ButtonContainer = styled.div`
+  display: flex;
+  justify-content: flex-end;
+  flex-direction: column;
+`;
+
 interface Note {
   id: string;
   title: string;
@@ -54,7 +72,7 @@ function Board() {
   };
 
   const deleteNote = (id: string) => {
-    const newData = data.filter((note) => note.id !== id);
+    const newData = notes.filter((note) => note.id !== id);
     setNotes(newData);
     console.log(notes);
   };
@@ -76,6 +94,7 @@ function Board() {
       ) : (
         <CreateNote />
       )}
+      <Button color="danger">CREATE NOTE!</Button>
     </>
   );
 }
