@@ -1,7 +1,9 @@
 import React from "react";
 import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
-import { faBookOpen } from "@fortawesome/free-solid-svg-icons";
+import { faBookOpen, faPlusSquare } from "@fortawesome/free-solid-svg-icons";
 import styled from "styled-components";
+import Button from "./Button";
+import { useHistory } from "react-router-dom";
 
 const StyledNavbar = styled.nav`
   display: flex;
@@ -13,13 +15,23 @@ const StyledNavbar = styled.nav`
   border-bottom: solid 2px black;
 `;
 const StyledFontAwesomeIcon = styled(FontAwesomeIcon)`
-  margin: 2rem;
+  margin: 0 1rem 0 1rem;
 `;
+
 function Navbar() {
+  const history = useHistory();
+  const redirect = () => {
+    history.push("/");
+  };
+
   return (
     <StyledNavbar>
-      <StyledFontAwesomeIcon icon={faBookOpen} size="2x" />
+      <StyledFontAwesomeIcon icon={faBookOpen} size="2x" onClick={redirect} />
       <h2>CREATE A NOTE SO YOU DON'T FORGET WHAT REALLY MATTERS </h2>
+      <Button color="primary">
+        <StyledFontAwesomeIcon icon={faPlusSquare} />
+        New Note
+      </Button>
     </StyledNavbar>
   );
 }

@@ -19,7 +19,7 @@ const NoteContainer = styled.div`
   -moz-box-shadow: -2px 0px 23px 1px rgba(0, 0, 0, 0.53);
   box-shadow: -2px 0px 23px 1px rgba(0, 0, 0, 0.53);
   &:hover {
-    transition: 0.5s ease-in-out;
+    transition: 0.8s ease-in-out;
     -webkit-box-shadow: -2px 0px 23px 23px rgba(0, 0, 0, 0.53);
     -moz-box-shadow: -2px 0px 23px 23px rgba(0, 0, 0, 0.53);
     box-shadow: -2px 0px 23px 23px rgba(0, 0, 0, 0.53);
@@ -29,7 +29,8 @@ const NoteContainer = styled.div`
 const ButtonContainer = styled.div`
   display: flex;
   justify-content: flex-end;
-  flex-direction: column;
+  align-items: flex-end;
+  flex-direction: row;
 `;
 
 interface Note {
@@ -65,10 +66,14 @@ const data: Note[] = [
 
 function Board() {
   const [notes, setNotes] = useState(data);
-  const [showEditing, setShowEditing] = useState(false);
+  const [showCreatePage, setShowCreatePage] = useState(false);
+
   const addNote = (note: Note) => {
-    const newData = { ...data, note };
+    const newData = [...notes, note];
+    // console.log(note);
     setNotes(newData);
+    // console.log(notes);
+    setShowCreatePage(!showCreatePage);
   };
 
   const deleteNote = (id: string) => {
@@ -79,7 +84,7 @@ function Board() {
 
   return (
     <>
-      {!showEditing ? (
+      {!showCreatePage ? (
         notes.map((note) => (
           <NoteContainer>
             <DisplayNote
@@ -87,14 +92,14 @@ function Board() {
               title={note.title}
               text={note.text}
               deleteNote={deleteNote}
-              handleClick={() => setShowEditing(!showEditing)}
+              handleClick={() => setShowCreatePage(!showCreatePage)}
             />
           </NoteContainer>
         ))
       ) : (
-        <CreateNote />
+        <CreateNote addNote={addNote} />
       )}
-      <Button color="danger">CREATE NOTE!</Button>
+      {/* <Button color="danger">CREATE NOTE!</Button> */}
     </>
   );
 }
