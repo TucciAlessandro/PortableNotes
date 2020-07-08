@@ -3,6 +3,7 @@ import DisplayNote from "./DisplayNote";
 import styled from "styled-components";
 import CreateNote from "./CreateNote";
 import Button from "./Button";
+import useLocalStorage from "../hooks/useLocalStorage";
 
 const NoteContainer = styled.div`
   display: flex;
@@ -65,7 +66,7 @@ const data: Note[] = [
 ];
 
 function Board() {
-  const [notes, setNotes] = useState(data);
+  const [notes, setNotes] = useLocalStorage("myNotes", data);
   const [showCreatePage, setShowCreatePage] = useState(false);
 
   // const addNote = (note: Note) => {
@@ -76,7 +77,7 @@ function Board() {
   //   setShowCreatePage(!showCreatePage);
   // };
 
-  const addNote = ({id, title, text}: Note) => {
+  const addNote = ({ id, title, text }: Note) => {
     const note = { id: id, title: title, text: text };
     const newData = [...notes, note];
     // console.log(note);
