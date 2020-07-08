@@ -68,7 +68,16 @@ function Board() {
   const [notes, setNotes] = useState(data);
   const [showCreatePage, setShowCreatePage] = useState(false);
 
-  const addNote = (note: Note) => {
+  // const addNote = (note: Note) => {
+  //   const newData = [...notes, note];
+  //   // console.log(note);
+  //   setNotes(newData);
+  //   // console.log(notes);
+  //   setShowCreatePage(!showCreatePage);
+  // };
+
+  const addNote = ({id, title, text}: Note) => {
+    const note = { id: id, title: title, text: text };
     const newData = [...notes, note];
     // console.log(note);
     setNotes(newData);

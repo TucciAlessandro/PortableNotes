@@ -16,7 +16,7 @@ const Container = styled.div`
 
 const BoardContainer = styled.div`
   width: 100%;
-  overflow: auto;
+  overflow: scroll;
   display: flex;
   flex-direction: column;
   height: 100%;
