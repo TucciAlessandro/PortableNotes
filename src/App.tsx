@@ -10,6 +10,7 @@ import CreateNote from "./components/CreateNote";
 const Container = styled.div`
   width: 100vw;
   display: flex;
+  overflow: auto;
   flex-direction: column;
   height: 100vh;
 `;
@@ -18,10 +19,12 @@ const BoardContainer = styled.div`
   width: 100%;
   overflow: auto;
   display: flex;
-  flex-direction: column;
+  flex-direction: row;
   height: 100%;
   background-color: lightblue;
 `;
+
+
 
 function App() {
   return (
@@ -30,8 +33,8 @@ function App() {
         <Container>
           <Navbar />
           <BoardContainer>
-            <Route exact path= "/" component={Board} />
-            <Route exact path= "/create" component={CreateNote} />
+            <Route exact path="/" component={Board} />
+            <Route exact path="/create" component={CreateNote} />
           </BoardContainer>
         </Container>
       </MyThemeContextsProvider>

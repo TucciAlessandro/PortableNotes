@@ -1,5 +1,6 @@
 import React, { useState } from "react";
 import styled from "styled-components";
+import Button from "./Button";
 
 const StyledTextField = styled.input`
   display: flex;
@@ -7,6 +8,13 @@ const StyledTextField = styled.input`
   justify-content: center;
   width: 20vw;
   height: 20vh;
+  margin: 1rem;
+`;
+
+const CreatePageContainer = styled.div`
+  display: flex;
+  flex-direction: column;
+  background-color: lightblue;
 `;
 
 interface Note {
@@ -38,7 +46,7 @@ function CreateNote({ addNote }: CreateNoteProps) {
     }
   };
   return (
-    <>
+    <CreatePageContainer>
       <StyledTextField
         onChange={handleChangeId}
         type="text"
@@ -57,10 +65,10 @@ function CreateNote({ addNote }: CreateNoteProps) {
         name="title"
         placeholder="Write your Title here please."
       />
-      <button onClick={handleClick}>
+      <Button color='secondary' onClick={handleClick}>
         Click me to add note to parent state
-      </button>
-    </>
+      </Button>
+    </CreatePageContainer>
   );
 }
 

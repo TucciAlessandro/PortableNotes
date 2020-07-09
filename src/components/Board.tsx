@@ -1,37 +1,40 @@
 import React, { useState } from "react";
 import DisplayNote from "./DisplayNote";
-import styled from "styled-components";
+import styled, { keyframes } from "styled-components";
 import CreateNote from "./CreateNote";
-import Button from "./Button";
 import useLocalStorage from "../hooks/useLocalStorage";
+import Navbar from "./Navbar";
 
+const boxAnimationSlide = keyframes`
+from{
+-webkit-transform: translateX(-500px);
+transform: translateX(-500px);
+}
+to {
+  -webkit-transform: translateX(0);
+    transform: translateX(0)}
+  `;
 const NoteContainer = styled.div`
   display: flex;
-  background-color: papayawhip;
+  background-color: beige;
   flex-direction: column;
-  margin: 2rem;
+  margin: 1rem;
   width: 20vw;
   height: 30vh;
   align-items: center;
   justify-content: center;
-  border: solid 1px black;
   border-radius: 19px;
-  -webkit-box-shadow: -2px 0px 23px 1px rgba(0, 0, 0, 0.53);
-  -moz-box-shadow: -2px 0px 23px 1px rgba(0, 0, 0, 0.53);
-  box-shadow: -2px 0px 23px 1px rgba(0, 0, 0, 0.53);
+  -webkit-transform: translateZ(0);
+  transform: translateZ(0);
+  -webkit-box-shadow: 0 0 0 0 rgba(0, 0, 0, 0);
+  box-shadow: 0 0 0 0 rgba(0, 0, 0, 0);
+  animation: ${boxAnimationSlide} 0.5s ease-in;
   &:hover {
-    transition: 0.8s ease-in-out;
-    -webkit-box-shadow: -2px 0px 23px 23px rgba(0, 0, 0, 0.53);
-    -moz-box-shadow: -2px 0px 23px 23px rgba(0, 0, 0, 0.53);
-    box-shadow: -2px 0px 23px 23px rgba(0, 0, 0, 0.53);
+    -webkit-transform: translateZ(100px);
+    transform: translateZ(100px);
+    -webkit-box-shadow: 0 0 20px 0px rgba(0, 0, 0, 0.35);
+    box-shadow: 0 0 20px 0px rgba(0, 0, 0, 0.35);
   }
-`;
-
-const ButtonContainer = styled.div`
-  display: flex;
-  justify-content: flex-end;
-  align-items: flex-end;
-  flex-direction: row;
 `;
 
 interface Note {
@@ -109,7 +112,6 @@ function Board() {
       ) : (
         <CreateNote addNote={addNote} />
       )}
-      {/* <Button color="danger">CREATE NOTE!</Button> */}
     </>
   );
 }
