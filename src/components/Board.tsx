@@ -4,6 +4,7 @@ import styled, { keyframes } from "styled-components";
 import CreateNote from "./CreateNote";
 import useLocalStorage from "../hooks/useLocalStorage";
 import Navbar from "./Navbar";
+import { useMyCreatePageContext } from "../contexts/CreateContexts";
 
 const boxAnimationSlide = keyframes`
 from{
@@ -70,15 +71,7 @@ const data: Note[] = [
 
 function Board() {
   const [notes, setNotes] = useLocalStorage("myNotes", data);
-  const [showCreatePage, setShowCreatePage] = useState(false);
-
-  // const addNote = (note: Note) => {
-  //   const newData = [...notes, note];
-  //   // console.log(note);
-  //   setNotes(newData);
-  //   // console.log(notes);
-  //   setShowCreatePage(!showCreatePage);
-  // };
+  const { isCreating, toggleCreatePage } = useMyCreatePageContext();
 
   const addNote = ({ id, title, text }: Note) => {
     const note = { id: id, title: title, text: text };
@@ -86,7 +79,7 @@ function Board() {
     // console.log(note);
     setNotes(newData);
     // console.log(notes);
-    setShowCreatePage(!showCreatePage);
+    toggleCreatePage();
   };
 
   const deleteNote = (id: string) => {
@@ -97,7 +90,7 @@ function Board() {
 
   return (
     <>
-      {!showCreatePage ? (
+      {!isCreating ? (
         notes.map((note) => (
           <NoteContainer>
             <DisplayNote
@@ -105,7 +98,7 @@ function Board() {
               title={note.title}
               text={note.text}
               deleteNote={deleteNote}
-              handleClick={() => setShowCreatePage(!showCreatePage)}
+              handleClick={() => toggleCreatePage()}
             />
           </NoteContainer>
         ))

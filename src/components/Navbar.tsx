@@ -4,6 +4,7 @@ import { faBookOpen, faPlusSquare } from "@fortawesome/free-solid-svg-icons";
 import styled from "styled-components";
 import Button from "./Button";
 import { useHistory } from "react-router-dom";
+import { useMyCreatePageContext } from "../contexts/CreateContexts";
 
 const StyledNavbar = styled.nav`
   display: flex;
@@ -14,11 +15,18 @@ const StyledNavbar = styled.nav`
   background-color: papayawhip;
   border-bottom: solid 2px black;
 `;
+
+const ButtonRow = styled.div`
+  display: flex;
+  justify-content: end;
+`;
+
 const StyledFontAwesomeIcon = styled(FontAwesomeIcon)`
   margin: 0 1rem 0 1rem;
 `;
 
 function Navbar() {
+  const { isCreating, toggleCreatePage } = useMyCreatePageContext();
   const history = useHistory();
   const redirect = () => {
     history.push("/");
@@ -28,10 +36,11 @@ function Navbar() {
     <StyledNavbar>
       <StyledFontAwesomeIcon icon={faBookOpen} size="2x" onClick={redirect} />
       <h2>CREATE A NOTE SO YOU DON'T FORGET WHAT REALLY MATTERS </h2>
-      <Button color="primary">
+      {!isCreating &&  <Button color="primary" onClick={toggleCreatePage}>
         <StyledFontAwesomeIcon icon={faPlusSquare} />
         New Note
-      </Button>
+      </Button> }
+     
     </StyledNavbar>
   );
 }

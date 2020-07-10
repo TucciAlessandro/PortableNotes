@@ -5,6 +5,7 @@ import styled from "styled-components";
 import { BrowserRouter, Route, Link } from "react-router-dom";
 import Board from "./components/Board";
 import { MyThemeContextsProvider } from "./contexts/ThemeContexts";
+import { MyCreatePageContextsProvider } from "./contexts/CreateContexts";
 import CreateNote from "./components/CreateNote";
 
 const Container = styled.div`
@@ -24,19 +25,19 @@ const BoardContainer = styled.div`
   background-color: lightblue;
 `;
 
-
-
 function App() {
   return (
     <BrowserRouter>
       <MyThemeContextsProvider>
-        <Container>
-          <Navbar />
-          <BoardContainer>
-            <Route exact path="/" component={Board} />
-            <Route exact path="/create" component={CreateNote} />
-          </BoardContainer>
-        </Container>
+        <MyCreatePageContextsProvider>
+          <Container>
+            <Navbar />
+            <BoardContainer>
+              <Route exact path="/" component={Board} />
+              <Route exact path="/create" component={CreateNote} />
+            </BoardContainer>
+          </Container>
+        </MyCreatePageContextsProvider>
       </MyThemeContextsProvider>
     </BrowserRouter>
   );
