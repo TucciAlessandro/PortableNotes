@@ -3,8 +3,9 @@ import DisplayNote from "./DisplayNote";
 import styled, { keyframes } from "styled-components";
 import CreateNote from "./CreateNote";
 import useLocalStorage from "../hooks/useLocalStorage";
-import Navbar from "./Navbar";
+import { v4 as uuidv4 } from "uuid";
 import { useMyCreatePageContext } from "../contexts/CreateContexts";
+import { text } from "@fortawesome/fontawesome-svg-core";
 
 const boxAnimationSlide = keyframes`
 from{
@@ -50,19 +51,19 @@ interface Data {
 
 const data: Note[] = [
   {
-    id: "1",
+    id: uuidv4(),
     text:
       "Lorem Ipsum is simply dummy text of the printing and typesetting industry. Lorem Ipsum has been the industry's standard dummy text ever since the 1500s, when an unknown printer took a galley",
     title: "test",
   },
   {
-    id: "2",
+    id: uuidv4(),
     text:
       "Lorem Ipsum is simply dummy text of the printing and typesetting industry. Lorem Ipsum has been the industry's standard dummy text ever since the 1500s, when an unknown printer took a galley",
     title: "test",
   },
   {
-    id: "3",
+    id: uuidv4(),
     text:
       "Lorem Ipsum is simply dummy text of the printing and typesetting industry. Lorem Ipsum has been the industry's standard dummy text ever since the 1500s, when an unknown printer took a galley   ",
     title: "test",
@@ -76,10 +77,13 @@ function Board() {
   const addNote = ({ id, title, text }: Note) => {
     const note = { id: id, title: title, text: text };
     const newData = [...notes, note];
-    // console.log(note);
     setNotes(newData);
-    // console.log(notes);
     toggleCreatePage();
+  };
+
+  const handleEdit = (id: string) => {
+    const dataToEdit = data.find((notes) => (notes.id = id));
+    console.log(dataToEdit)
   };
 
   const deleteNote = (id: string) => {
@@ -98,12 +102,15 @@ function Board() {
               title={note.title}
               text={note.text}
               deleteNote={deleteNote}
+              handleEdit={() => handleEdit(note.id)}
               handleClick={() => toggleCreatePage()}
             />
           </NoteContainer>
         ))
       ) : (
-        <CreateNote addNote={addNote} />
+        <CreateNote
+          addNote={addNote}
+        />
       )}
     </>
   );

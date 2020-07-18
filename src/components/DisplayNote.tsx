@@ -7,6 +7,7 @@ interface NoteProps {
   id: string;
   text: string;
   handleClick: (e: any) => void;
+  handleEdit: (id: any) => void;
   deleteNote: (id: string) => void;
 }
 
@@ -42,17 +43,17 @@ const ButtonContainer = styled.div`
   flex-direction: row;
 `;
 
-function DisplayNote({ title, id, text, deleteNote, handleClick }: NoteProps) {
+function DisplayNote({ title, id, text, deleteNote, handleEdit }: NoteProps) {
   return (
     <>
-      <Container onClick={handleClick}>
+      <Container>
         <Separator>{title.toUpperCase()}</Separator>
         <StyledHr />
         <SeparatorText>{text}</SeparatorText>
         {id}
       </Container>
       <ButtonContainer>
-        <Button color="secondary" size="small" onClick={handleClick}>
+        <Button color="secondary" size="small" onClick={handleEdit}>
           EDIT
         </Button>
         <Button color="danger" size="small" onClick={() => deleteNote(id)}>
