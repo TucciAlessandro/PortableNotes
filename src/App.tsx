@@ -20,9 +20,11 @@ const BoardContainer = styled.div`
   width: 100%;
   overflow: auto;
   display: flex;
+  align-items:flex-start;
+  justify-content:center;
   flex-direction: row;
   height: 100%;
-  background-color: lightblue;
+  background-color: #f8fefe;
 `;
 
 function App() {

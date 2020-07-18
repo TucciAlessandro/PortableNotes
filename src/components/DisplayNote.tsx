@@ -23,19 +23,21 @@ const Separator = styled.h2`
   justify-content: center;
   align-items: center;
 `;
-const SeparatorText = styled.h4`
+const SeparatorText = styled.p`
   margin: 0 1rem;
 `;
 
 const StyledHr = styled.hr`
   width: 80%;
   color: black;
+  border: 1px solid black;
 `;
 
 const Container = styled.div`
   width: 100%;
   height: 100%;
   margin: 0;
+  margin-top: 1rem;
 `;
 
 const ButtonContainer = styled.div`
@@ -50,7 +52,6 @@ function DisplayNote({ title, id, text, deleteNote, handleEdit }: NoteProps) {
         <Separator>{title.toUpperCase()}</Separator>
         <StyledHr />
         <SeparatorText>{text}</SeparatorText>
-        {id}
       </Container>
       <ButtonContainer>
         <Button color="secondary" size="small" onClick={handleEdit}>

@@ -18,7 +18,7 @@ to {
   `;
 const NoteContainer = styled.div`
   display: flex;
-  background-color: beige;
+  background-color: #e3fafb;
   flex-direction: column;
   margin: 1rem;
   width: 20vw;
@@ -31,11 +31,13 @@ const NoteContainer = styled.div`
   -webkit-box-shadow: 0 0 0 0 rgba(0, 0, 0, 0);
   box-shadow: 0 0 0 0 rgba(0, 0, 0, 0);
   animation: ${boxAnimationSlide} 0.5s ease-in;
+  -webkit-box-shadow: 0 0 20px 0px rgba(0, 0, 0, 0.35);
+  box-shadow: 0 0 20px 0px rgba(0, 0, 0, 0.35);
   &:hover {
     -webkit-transform: translateZ(100px);
     transform: translateZ(100px);
-    -webkit-box-shadow: 0 0 20px 0px rgba(0, 0, 0, 0.35);
-    box-shadow: 0 0 20px 0px rgba(0, 0, 0, 0.35);
+    -webkit-box-shadow: 0 0 30px 0px rgba(0, 0, 0, 0.35);
+  box-shadow: 0 0 30px 0px rgba(0, 0, 0, 0.35);
   }
 `;
 
@@ -83,7 +85,7 @@ function Board() {
 
   const handleEdit = (id: string) => {
     const dataToEdit = data.find((notes) => (notes.id = id));
-    console.log(dataToEdit)
+    console.log(dataToEdit);
   };
 
   const deleteNote = (id: string) => {
@@ -108,9 +110,7 @@ function Board() {
           </NoteContainer>
         ))
       ) : (
-        <CreateNote
-          addNote={addNote}
-        />
+        <CreateNote addNote={addNote} />
       )}
     </>
   );

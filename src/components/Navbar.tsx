@@ -9,16 +9,22 @@ import { useMyCreatePageContext } from "../contexts/CreateContexts";
 const StyledNavbar = styled.nav`
   display: flex;
   align-items: center;
-  justify-content: flex-start;
+  justify-content: space-between;
   width: 100%;
   height: 5%;
-  background-color: papayawhip;
-  border-bottom: solid 2px black;
+  background-color: #dcf4fd;
+  border-bottom: solid 2px #ffe7bf;
 `;
 
-const ButtonRow = styled.div`
+const StyledTitle = styled.div`
   display: flex;
-  justify-content: end;
+  align-items: center;
+  justify-content: flex-start;
+`;
+const StyledButton = styled.div`
+  display: flex;
+  align-items: flex-end;
+  justify-content: flex-end;
 `;
 
 const StyledFontAwesomeIcon = styled(FontAwesomeIcon)`
@@ -34,13 +40,18 @@ function Navbar() {
 
   return (
     <StyledNavbar>
-      <StyledFontAwesomeIcon icon={faBookOpen} size="2x" onClick={redirect} />
-      <h2>CREATE A NOTE SO YOU DON'T FORGET WHAT REALLY MATTERS </h2>
-      {!isCreating &&  <Button color="primary" onClick={toggleCreatePage}>
-        <StyledFontAwesomeIcon icon={faPlusSquare} />
-        New Note
-      </Button> }
-     
+      <StyledTitle>
+        <StyledFontAwesomeIcon icon={faBookOpen} size="2x" onClick={redirect} />
+        <h2>CREATE A NOTE SO YOU DON'T FORGET WHAT REALLY MATTERS </h2>
+      </StyledTitle>
+      <StyledButton>
+        {!isCreating && (
+          <Button color="primary" onClick={toggleCreatePage}>
+            <StyledFontAwesomeIcon icon={faPlusSquare} />
+            New Note
+          </Button>
+        )}
+      </StyledButton>
     </StyledNavbar>
   );
 }
