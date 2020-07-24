@@ -31,7 +31,7 @@ const InputCardContainer = styled.div`
   width: 60%;
   background: black;
 `;
-const StyledTextField = styled.input`
+const StyledTextField = styled.textarea`
   display: flex;
   border-radius: 19px;
   background: papayawhip;
@@ -84,20 +84,26 @@ function CreateNote({
 }: CreateNoteProps) {
   const { toggleCreatePage } = useMyCreatePageContext();
 
+  const handleKeyPress = (event: any) => {
+    event.persist();
+    if (event.keyCode == 13) {handleClick()}
+  };
+
   return (
     <CreatePageContainer>
       <InputCardContainer>
         <StyledTitleField
           value={title.toUpperCase()}
           onChange={handleChangeTitle}
-          type="text"
+          // type="text"
           name="title"
           placeholder="Write your Title here please."
         />
         <StyledTextField
           value={text}
+          onKeyDown={handleKeyPress}
           onChange={handleChangeText}
-          type="text"
+          // type="text"
           name="Text"
           placeholder="Write your Text here please."
         />

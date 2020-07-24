@@ -21,8 +21,8 @@ const NoteContainer = styled.div`
   background-color: #e3fafb;
   flex-direction: column;
   margin: 1rem;
-  width: 20vw;
-  height: 30vh;
+  width: 400px;
+  height: 400px;
   align-items: center;
   justify-content: center;
   border-radius: 19px;
@@ -86,11 +86,10 @@ function Board() {
     const note = { id: id, title: title, text: text };
     const newData = [...notes, note];
     setNotes(newData);
-    setText('0');
-    setTitle('0');
     toggleCreatePage();
   };
 
+  //
   const handleEdit = (id: string) => {
     const dataToEdit = notes.find((notes) => notes.id === id);
     dataToEdit && setTitle(dataToEdit.title);

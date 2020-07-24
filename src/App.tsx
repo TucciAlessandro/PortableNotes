@@ -1,7 +1,7 @@
 import React from "react";
 import "./App.css";
 import Navbar from "./components/Navbar";
-import styled from "styled-components";
+import styled from "styled-components/macro";
 import { BrowserRouter, Route, Link } from "react-router-dom";
 import Board from "./components/Board";
 import { MyThemeContextsProvider } from "./contexts/ThemeContexts";
@@ -18,10 +18,11 @@ const Container = styled.div`
 
 const BoardContainer = styled.div`
   width: 100%;
+  flex-wrap: wrap;
   overflow: auto;
   display: flex;
-  align-items:flex-start;
-  justify-content:center;
+  align-items: flex-start;
+  justify-content: center;
   flex-direction: row;
   height: 100%;
   background-color: #f8fefe;
