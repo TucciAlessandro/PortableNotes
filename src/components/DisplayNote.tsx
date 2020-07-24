@@ -46,8 +46,6 @@ const ButtonContainer = styled.div`
 `;
 
 function DisplayNote({ title, id, text, deleteNote, handleEdit }: NoteProps) {
-  const dataToEdit = handleEdit(id);
-
   return (
     <>
       <Container>
@@ -56,7 +54,7 @@ function DisplayNote({ title, id, text, deleteNote, handleEdit }: NoteProps) {
         <SeparatorText>{text}</SeparatorText>
       </Container>
       <ButtonContainer>
-        <Button color="secondary" size="small" onClick={handleEdit}>
+        <Button color="secondary" size="small" onClick={() => handleEdit(id)}>
           EDIT
         </Button>
         <Button color="danger" size="small" onClick={() => deleteNote(id)}>

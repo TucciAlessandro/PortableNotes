@@ -3,6 +3,7 @@ import styled from "styled-components";
 import { v4 as uuidv4 } from "uuid";
 import Button from "./Button";
 import { useMyCreatePageContext } from "../contexts/CreateContexts";
+import { findByTitle } from "@testing-library/react";
 
 const StyledTitleField = styled.input`
   display: flex;
@@ -65,39 +66,36 @@ interface Note {
 
 interface CreateNoteProps {
   addNote: (note: any) => void;
-  titleProp?: string;
-  textProp?: string |undefined;
-  idProp?: string;
+  handleChangeTitle: (e: any) => void;
+  handleChangeText: (e: any) => void;
+  handleClick: () => void;
+  title: string;
+  text: string;
+  id: string;
 }
 
-function CreateNote({ addNote, titleProp, textProp, idProp }: CreateNoteProps) {
-  const [id, setId] = useState(uuidv4());
-  const [title, setTitle] = useState(titleProp);
-  const [text, setText] = useState(textProp);
+function CreateNote({
+  handleChangeTitle,
+  handleChangeText,
+  handleClick,
+  title,
+  text,
+  id,
+}: CreateNoteProps) {
   const { toggleCreatePage } = useMyCreatePageContext();
 
-  const handleChangeId = (e: any) => {
-    setId(e.target.value);
-    console.log(id);
-  };
-  const handleChangeTitle = (e: any) => setTitle(e.target.value);
-  const handleChangeText = (e: any) => setText(e.target.value);
-
-  const handleClick = () => {
-    if (id && title && text !== undefined) {
-      addNote({ id, title, text });
-    }
-  };
   return (
     <CreatePageContainer>
       <InputCardContainer>
         <StyledTitleField
+          value={title.toUpperCase()}
           onChange={handleChangeTitle}
           type="text"
           name="title"
           placeholder="Write your Title here please."
         />
         <StyledTextField
+          value={text}
           onChange={handleChangeText}
           type="text"
           name="Text"
@@ -107,7 +105,7 @@ function CreateNote({ addNote, titleProp, textProp, idProp }: CreateNoteProps) {
           Save
         </Button>
         <Button color="danger" onClick={toggleCreatePage}>
-          Delete
+          Go Back
         </Button>
       </InputCardContainer>
     </CreatePageContainer>
