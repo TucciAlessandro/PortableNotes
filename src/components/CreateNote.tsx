@@ -72,8 +72,8 @@ interface CreateNoteProps {
 
 function CreateNote({ addNote, titleProp, textProp, idProp }: CreateNoteProps) {
   const [id, setId] = useState(uuidv4());
-  const [title, setTitle] = useState();
-  const [text, setText] = useState();
+  const [title, setTitle] = useState(titleProp);
+  const [text, setText] = useState(textProp);
   const { toggleCreatePage } = useMyCreatePageContext();
 
   const handleChangeId = (e: any) => {

@@ -46,6 +46,8 @@ const ButtonContainer = styled.div`
 `;
 
 function DisplayNote({ title, id, text, deleteNote, handleEdit }: NoteProps) {
+  const dataToEdit = handleEdit(id);
+
   return (
     <>
       <Container>

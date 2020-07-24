@@ -1,6 +1,10 @@
 import React from "react";
 import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
-import { faBookOpen, faPlusSquare } from "@fortawesome/free-solid-svg-icons";
+import {
+  faBookOpen,
+  faPlusSquare,
+  faLongArrowAltLeft,
+} from "@fortawesome/free-solid-svg-icons";
 import styled from "styled-components";
 import Button from "./Button";
 import { useHistory } from "react-router-dom";
@@ -49,6 +53,12 @@ function Navbar() {
           <Button color="primary" onClick={toggleCreatePage}>
             <StyledFontAwesomeIcon icon={faPlusSquare} />
             New Note
+          </Button>
+        )}
+        {isCreating && (
+          <Button color="danger" onClick={toggleCreatePage}>
+            <StyledFontAwesomeIcon icon={faLongArrowAltLeft} />
+            Go Back to Notes
           </Button>
         )}
       </StyledButton>
